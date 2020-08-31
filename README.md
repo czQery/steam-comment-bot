@@ -3,6 +3,7 @@ Steam comment bot
 **Bot automatically write comment and when someone delete it he write again**
 
 **Config.json**
+
 Put custom details
 ```json
 {
