@@ -13,6 +13,7 @@ with open("config.json", "r+", encoding="utf-8") as config_file:
     config_file.close()
 try:
     message = config["message"]
+    delay = config["delay"]
     target = config["target"]
     session_id = config["session_id"]
     login_secure = config["login_secure"]
@@ -43,4 +44,4 @@ while True:
             else:
                 ct = datetime.datetime.now()
                 print(f"[{ct.hour}:{ct.minute}:{ct.second}] Failed!")
-    sleep(300)
+    sleep(int(delay))
