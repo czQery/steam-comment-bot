@@ -3,10 +3,10 @@ import sys
 import requests
 import datetime
 from time import sleep
-from colorama import Style, Fore
 from requests import post
 
-print(Fore.BLUE+"Created by czQery")
+ct = datetime.datetime.now()
+print(f"[{ct.hour}:{ct.minute}:{ct.second}] Created by czQery")
 
 with open("config.json", "r+", encoding="utf-8") as config_file:
     config = json.load(config_file)
@@ -19,10 +19,10 @@ try:
     machine_auth = config["machine_auth"]
 except:
     ct = datetime.datetime.now()
-    print(Fore.BLUE+f"[{ct.hour}:{ct.minute}:{ct.second}]"+Fore.RED+" Config error!")
+    print(f"[{ct.hour}:{ct.minute}:{ct.second}] Config error!")
     sys.exit()
 ct = datetime.datetime.now()
-print(Fore.BLUE+f"[{ct.hour}:{ct.minute}:{ct.second}]"+Fore.GREEN+" Config loaded!")
+print(f"[{ct.hour}:{ct.minute}:{ct.second}] Config loaded!")
 
 
 while True:
@@ -35,8 +35,12 @@ while True:
 
         if (resp.json().get("success") is True):
             ct = datetime.datetime.now()
-            print(Fore.BLUE+f"[{ct.hour}:{ct.minute}:{ct.second}]"+Fore.GREEN+ " Success!")
+            print(f"[{ct.hour}:{ct.minute}:{ct.second}] Success!")
         else:
-            ct = datetime.datetime.now()
-            print(Fore.BLUE+f"[{ct.hour}:{ct.minute}:{ct.second}]"+Fore.RED+ " Failed!")
+            if (resp.json().get("error") is not None):
+                ct = datetime.datetime.now()
+                print(f"[{ct.hour}:{ct.minute}:{ct.second}] Failed: "+resp.json().get("error"))
+            else:
+                ct = datetime.datetime.now()
+                print(f"[{ct.hour}:{ct.minute}:{ct.second}] Failed!")
     sleep(300)
