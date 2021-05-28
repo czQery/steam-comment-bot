@@ -1,6 +1,6 @@
 Steam comment bot
 ============
-**Bot automatically write comment and when someone delete it he write again**
+**Bot that automatically writes a comment, and when that comment is deleted, bot writes it again.**
 
 **Config.json**
 
